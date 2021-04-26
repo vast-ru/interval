@@ -134,7 +134,7 @@ class IntervalParser
      */
     private function isInt(string $value): bool
     {
-        return \is_numeric($value) && (float)\round($value, 0) === (float)$value;
+        return \is_numeric($value) && (float)\round((float)$value, 0) === (float)$value;
     }
 
     /**

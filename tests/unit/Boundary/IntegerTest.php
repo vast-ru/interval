@@ -219,7 +219,7 @@ class IntegerTest extends \PHPUnit\Framework\TestCase
     public function equalToTest()
     {
         $bounday = new Integer(1, true);
-        $this->assertInternalType('boolean', $bounday->equalTo(new Integer(1, true)));
+        $this->assertTrue($bounday->equalTo(new Integer(1, true)));
     }
 
     /**
@@ -228,7 +228,7 @@ class IntegerTest extends \PHPUnit\Framework\TestCase
     public function greaterThanTest()
     {
         $bounday = new Integer(1, true);
-        $this->assertInternalType('boolean', $bounday->greaterThan(new Integer(1, true)));
+        $this->assertFalse($bounday->greaterThan(new Integer(1, true)));
     }
 
     /**
@@ -237,7 +237,7 @@ class IntegerTest extends \PHPUnit\Framework\TestCase
     public function lessThanTest()
     {
         $bounday = new Integer(1, true);
-        $this->assertInternalType('boolean', $bounday->lessThan(new Integer(1, true)));
+        $this->assertFalse($bounday->lessThan(new Integer(1, true)));
     }
 
     /**
@@ -246,7 +246,7 @@ class IntegerTest extends \PHPUnit\Framework\TestCase
     public function greaterThanOrEqualToTest()
     {
         $bounday = new Integer(1, true);
-        $this->assertInternalType('boolean', $bounday->greaterThanOrEqualTo(new Integer(1, true)));
+        $this->assertTrue($bounday->greaterThanOrEqualTo(new Integer(1, true)));
     }
 
     /**
@@ -255,7 +255,7 @@ class IntegerTest extends \PHPUnit\Framework\TestCase
     public function lessThanOrEqualToTest()
     {
         $bounday = new Integer(1, true);
-        $this->assertInternalType('boolean', $bounday->lessThanOrEqualTo(new Integer(1, true)));
+        $this->assertTrue($bounday->lessThanOrEqualTo(new Integer(1, true)));
     }
 
     public function toStringProvider()

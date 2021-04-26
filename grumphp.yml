@@ -1,6 +1,4 @@
-parameters:
-    git_dir: .
-    bin_dir: vendor/bin
+grumphp:
     git_hook_variables:
         EXEC_GRUMPHP_COMMAND: docker-compose exec -T php
     ascii:
@@ -33,8 +31,9 @@ parameters:
                 - "die("
                 - "var_dump("
                 - "exit;"
-        phpcsfixer: ~
+        phpcsfixer:
+            config: .php_cs
         phplint: ~
         phpparser: ~
         phpstan: ~
-        securitychecker: ~
+        securitychecker_local: ~
