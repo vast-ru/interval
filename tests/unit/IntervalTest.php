@@ -23,7 +23,6 @@ class IntervalTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @test
-     * @expectedException \Exception
      * @dataProvider constructorShouldThrowExceptionProvider
      * @param mixed $start
      * @param mixed $end
@@ -31,6 +30,7 @@ class IntervalTest extends \PHPUnit\Framework\TestCase
      */
     public function constructorShouldThrowException($start, $end)
     {
+        $this->expectException(\Exception::class);
         return new \Interval\Interval($start, $end);
     }
 
@@ -40,7 +40,7 @@ class IntervalTest extends \PHPUnit\Framework\TestCase
     public function union()
     {
         $interval = new \Interval\Interval(1, 2);
-        $this->assertInstanceOf(Intervals::class, $interval->union(new \Interval\Interval(2, 3)));
+        $this->assertEquals(new Intervals([new Interval(1, 3)]), $interval->union(new \Interval\Interval(2, 3)));
     }
 
     /**
@@ -49,7 +49,7 @@ class IntervalTest extends \PHPUnit\Framework\TestCase
     public function intersection()
     {
         $interval = new \Interval\Interval(1, 4);
-        $this->assertInstanceOf(Interval::class, $interval->intersect(new \Interval\Interval(3, 5)));
+        $this->assertEquals(new Interval(3, 4), $interval->intersect(new \Interval\Interval(3, 5)));
     }
 
     /**
@@ -58,7 +58,7 @@ class IntervalTest extends \PHPUnit\Framework\TestCase
     public function exclusion()
     {
         $interval = new \Interval\Interval(1, 4);
-        $this->assertInstanceOf(Intervals::class, $interval->exclude(new \Interval\Interval(3, 5)));
+        $this->assertEquals(new Intervals([new Interval(1, 3, false, true)]), $interval->exclude(new \Interval\Interval(3, 5)));
     }
 
     /**
@@ -67,7 +67,7 @@ class IntervalTest extends \PHPUnit\Framework\TestCase
     public function includes()
     {
         $interval = new \Interval\Interval(1, 4);
-        $this->assertInternalType('bool', $interval->includes(new \Interval\Interval(3, 5)));
+        $this->assertFalse($interval->includes(new \Interval\Interval(3, 5)));
     }
 
     /**
@@ -76,7 +76,7 @@ class IntervalTest extends \PHPUnit\Framework\TestCase
     public function overlaps()
     {
         $interval = new \Interval\Interval(1, 4);
-        $this->assertInternalType('bool', $interval->overlaps(new \Interval\Interval(3, 5)));
+        $this->assertTrue($interval->overlaps(new \Interval\Interval(3, 5)));
     }
 
     /**
@@ -85,7 +85,7 @@ class IntervalTest extends \PHPUnit\Framework\TestCase
     public function isNeighborBeforeOf()
     {
         $interval = new \Interval\Interval(1, 4);
-        $this->assertInternalType('bool', $interval->isNeighborBefore(new \Interval\Interval(3, 5)));
+        $this->assertFalse($interval->isNeighborBefore(new \Interval\Interval(3, 5)));
     }
 
     /**
@@ -94,7 +94,7 @@ class IntervalTest extends \PHPUnit\Framework\TestCase
     public function isNeighborAfterOf()
     {
         $interval = new \Interval\Interval(1, 4);
-        $this->assertInternalType('bool', $interval->isNeighborAfter(new \Interval\Interval(3, 5)));
+        $this->assertFalse($interval->isNeighborAfter(new \Interval\Interval(3, 5)));
     }
 
     /**
@@ -103,7 +103,7 @@ class IntervalTest extends \PHPUnit\Framework\TestCase
     public function isBeforeOf()
     {
         $interval = new \Interval\Interval(1, 4);
-        $this->assertInternalType('bool', $interval->isBefore(new \Interval\Interval(3, 5)));
+        $this->assertFalse($interval->isBefore(new \Interval\Interval(3, 5)));
     }
 
     /**
@@ -112,7 +112,7 @@ class IntervalTest extends \PHPUnit\Framework\TestCase
     public function isAfter()
     {
         $interval = new \Interval\Interval(1, 4);
-        $this->assertInternalType('bool', $interval->isAfter(new \Interval\Interval(3, 5)));
+        $this->assertFalse($interval->isAfter(new \Interval\Interval(3, 5)));
     }
 
     /**
@@ -121,7 +121,7 @@ class IntervalTest extends \PHPUnit\Framework\TestCase
     public function starts()
     {
         $interval = new \Interval\Interval(1, 4);
-        $this->assertInternalType('bool', $interval->starts(new \Interval\Interval(3, 5)));
+        $this->assertFalse($interval->starts(new \Interval\Interval(3, 5)));
     }
 
     /**
@@ -130,7 +130,7 @@ class IntervalTest extends \PHPUnit\Framework\TestCase
     public function ends()
     {
         $interval = new \Interval\Interval(1, 4);
-        $this->assertInternalType('bool', $interval->ends(new \Interval\Interval(3, 5)));
+        $this->assertFalse($interval->ends(new \Interval\Interval(3, 5)));
     }
 
     /**
@@ -139,7 +139,7 @@ class IntervalTest extends \PHPUnit\Framework\TestCase
     public function equals()
     {
         $interval = new \Interval\Interval(1, 4);
-        $this->assertInternalType('bool', $interval->equals(new \Interval\Interval(3, 5)));
+        $this->assertFalse($interval->equals(new \Interval\Interval(3, 5)));
     }
 
     public function toStringProvider()
@@ -207,11 +207,11 @@ class IntervalTest extends \PHPUnit\Framework\TestCase
     /**
      * @test
      * @dataProvider toComparableExceptionProvider
-     * @expectedException UnexpectedValueException
      * @param mixed $boundary
      */
     public function toComparableException($boundary)
     {
+        $this->expectException(\UnexpectedValueException::class);
         Interval::toComparable($boundary);
     }
 

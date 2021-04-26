@@ -113,7 +113,6 @@ class IntervalsTest extends \PHPUnit\Framework\TestCase
             new Interval(17, 18),
         ]));
 
-        $this->assertInstanceOf(Intervals::class, $results);
         $this->assertCount(4, $results);
     }
 }

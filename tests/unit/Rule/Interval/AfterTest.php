@@ -82,7 +82,6 @@ class AfterTest extends \PHPUnit\Framework\TestCase
     {
         $asserter  = new After();
         $result    = $asserter->assert(new Interval($firstStart, $firstEnd), new Interval($secondStart, $secondEnd));
-        $this->assertInternalType('bool', $result);
         $this->assertSame($expected, $result);
     }
 

@@ -82,7 +82,6 @@ class NeighborhoodBeforeTest extends \PHPUnit\Framework\TestCase
     {
         $asserter  = new NeighborhoodBefore();
         $result    = $asserter->assert(new Interval($firstStart, $firstEnd), new Interval($secondStart, $secondEnd));
-        $this->assertInternalType('bool', $result);
         $this->assertSame($expected, $result);
     }
 

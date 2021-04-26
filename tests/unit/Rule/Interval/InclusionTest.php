@@ -92,7 +92,6 @@ class InclusionTest extends \PHPUnit\Framework\TestCase
     {
         $asserter  = new Inclusion();
         $result    = $asserter->assert(new Interval($firstStart, $firstEnd), new Interval($secondStart, $secondEnd));
-        $this->assertInternalType('bool', $result);
         $this->assertSame($expected, $result);
     }
 

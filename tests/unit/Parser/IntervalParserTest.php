@@ -40,7 +40,6 @@ class IntervalParserTest extends \PHPUnit\Framework\TestCase
 
         /** @var Interval $interval */
         $interval = $parser->parse($expression);
-        $this->assertInstanceOf(Interval::class, $interval);
         if ($start instanceof \DateTimeInterface) {
             self::assertInstanceOf(DateTime::class, $interval->getStart());
             self::assertInstanceOf(DateTime::class, $interval->getEnd());
@@ -83,13 +82,13 @@ class IntervalParserTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @test
-     * @expectedException \Exception
      * @dataProvider parseExceptionProvider
      * @param mixed $expression
      */
     public function parseException($expression)
     {
         $parser = new IntervalParser();
+        $this->expectException(\Exception::class);
         $parser->parse($expression);
     }
 
@@ -115,7 +114,6 @@ class IntervalParserTest extends \PHPUnit\Framework\TestCase
 
         /** @var Interval $interval */
         $interval = $parser->parse($expression);
-        $this->assertInstanceOf(Interval::class, $interval);
         if ($start instanceof \DateTimeInterface) {
             self::assertInstanceOf(\DateTimeInterface::class, $interval->getStart()->getValue());
             $this->assertEquals($start, $interval->getStart()->getValue());
