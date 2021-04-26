@@ -40,7 +40,7 @@ class Infinity extends BoundaryAbstract
      */
     public function __toString()
     {
-        $string = ($this->getValue() < 0 ? '-' : '+') . '∞';
+        $string = ($this->getValue() < 0 ? '-' : '+') . 'INF';
         return $this->applyBoundarySymbol($string);
     }
 }

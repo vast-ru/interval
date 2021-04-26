@@ -218,6 +218,6 @@ class InfinityTest extends \PHPUnit\Framework\TestCase
      */
     public function toStringTest()
     {
-        $this->assertSame('[-∞', (string)new Infinity(-INF, true));
+        $this->assertSame('[-INF', (string)new Infinity(-INF, true));
     }
 }
