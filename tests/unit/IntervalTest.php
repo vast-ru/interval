@@ -148,11 +148,11 @@ class IntervalTest extends \PHPUnit\Framework\TestCase
             [1, 2, '[1, 2]'],
             [1.2, 2.2, '[1.2, 2.2]'],
             [new \DateTime('2016-01-01', new \DateTimeZone('UTC')), new \DateTime('2016-01-02', new \DateTimeZone('UTC')), '[2016-01-01T00:00:00+00:00, 2016-01-02T00:00:00+00:00]'],
-            [-INF, +INF, ']-∞, +∞['],
-            [-INF, 1, ']-∞, 1]'],
-            [1, +INF, '[1, +∞['],
-            [null, 1, ']-∞, 1]'],
-            [1, null, '[1, +∞['],
+            [-INF, +INF, ']-INF, +INF['],
+            [-INF, 1, ']-INF, 1]'],
+            [1, +INF, '[1, +INF['],
+            [null, 1, ']-INF, 1]'],
+            [1, null, '[1, +INF['],
         ];
     }
 
